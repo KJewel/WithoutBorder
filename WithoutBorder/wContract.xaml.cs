@@ -61,7 +61,9 @@ namespace WithoutBorder
                 MessageBox.Show("Новый 'договор' добавлен");
 
                 Filter();
+                MessageBox.Show("Обьект добавлен");
             }
+
         }
 
         private void Delete()

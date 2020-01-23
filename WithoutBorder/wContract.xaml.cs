@@ -104,6 +104,7 @@ namespace WithoutBorder
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             Update();
+            MessageBox.Show("");
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {

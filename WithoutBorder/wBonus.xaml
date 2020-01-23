@@ -1,0 +1,71 @@
+﻿<Window x:Class="WithoutBorder.wBonus"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WithoutBorder"
+        mc:Ignorable="d"
+        Title="Бонус" Height="486" Width="530" Loaded="Window_Loaded">
+    <Grid>
+        <DockPanel>
+            <Grid  DockPanel.Dock="Top" Height="26">
+                <WrapPanel>
+                    <Label Content="Наименование:"></Label>
+                    <TextBox x:Name="txtNameFilter" Margin="0,5" Width="200" TextChanged="txtName_TextChanged"></TextBox>
+                    <CheckBox Checked="ckbFilter_Checked" Unchecked="ckbFilter_Unchecked" Margin="0,5,0,0" x:Name="ckbFilter"></CheckBox>
+                </WrapPanel>
+            </Grid>
+            <Grid DockPanel.Dock="Top" Height="3" Background="Black">
+            </Grid>
+            <Grid DockPanel.Dock="Top" Height="200" >
+                <StackPanel>
+                    <WrapPanel>
+                        <Label Margin="0,5,0,0" Content="Наименование:"></Label>
+                        <TextBox x:Name="txtName" Text="{Binding ElementName=dgdBonus, Path=SelectedItem.Name}" Height="26" Width="300" Margin="0,5"></TextBox>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <Label Margin="0,5,35,0" Content="Процент:"></Label>
+                        <TextBox Validation.Error="dgdBonus_Error" x:Name="txtProcent"  Height="26" Width="300" Margin="0,5">
+                            <Binding Path="SelectedItem.PercentBonus" ElementName="dgdBonus" NotifyOnValidationError="True">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <Label Margin="0,5,28,0" VerticalAlignment="Top" Height="26" Content="Описание:"></Label>
+                        <TextBox TextWrapping="Wrap" x:Name="txtDescription" Text="{Binding ElementName=dgdBonus, Path=SelectedItem.Description}" Height="100" Width="300" Margin="0,5"></TextBox>
+                    </WrapPanel>
+                </StackPanel>
+            </Grid>
+            <Grid DockPanel.Dock="Top" Height="3" Background="Black">
+            </Grid>
+            <Grid Height="50" DockPanel.Dock="Bottom">
+                <WrapPanel Orientation="Vertical" Margin="10">
+                    <Button x:Name="btnAdd" Content="Добавить" Click="btnAdd_Click" Width="100" Margin="0,0,10,0" Height="26"></Button>
+                    <Button x:Name="btnDelete" Content="Удалить" Click="btnDelete_Click" Width="100" Margin="0,0,10,0" Height="26"></Button>
+                    <Button Content="Сохранить" Click="btnSave_Click" Width="100" Margin="0,0,10,0" Height="26"></Button>
+                    <Button Content="Обновить" x:Name="btnReload" Click="btnReload_Click" Width="100" Height="26"/>
+                </WrapPanel>
+            </Grid>
+            <Grid>
+                <DataGrid  x:Name="dgdBonus" AutoGenerateColumns="False" SelectionMode="Single" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Наименование">
+                            <DataGridTextColumn.Binding>
+                                <Binding Path="Name" NotifyOnValidationError="True">
+                                    <Binding.ValidationRules>
+                                        <DataErrorValidationRule />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Процент" Binding="{Binding Path=PercentBonus}" >
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</Window>

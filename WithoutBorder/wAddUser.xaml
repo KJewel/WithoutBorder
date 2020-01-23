@@ -1,0 +1,65 @@
+﻿<Window x:Class="WithoutBorder.wAddUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WithoutBorder"
+        mc:Ignorable="d"
+        Title="Добавить пользователя" Height="496" Width="363" Loaded="Window_Loaded">
+    <Grid>
+        <StackPanel>
+            <Grid>
+                <WrapPanel Margin="0,0,26,0">
+                    <Button  Padding="10" Margin="40,20,20,0" Click="iProfile_Click">
+                        <Image x:Name="iProfile" Source="{Binding Path=GetImage}" Height="200" Width="193"/>
+                    </Button>
+                </WrapPanel>
+            </Grid>
+            <Grid>
+                <WrapPanel>
+                    <Label Margin="0,10" Padding="10,0,0,0" Width="110" Content="Роль:"></Label>
+                    <ComboBox Margin="0,10" Padding="0" x:Name="cmbRole"
+                              ItemsSource="{Binding Path=TRole}"
+                              DisplayMemberPath="Title"
+                              SelectedValuePath="Id"
+                              SelectedValue="{Binding Path=GetRoleId}" Width="145" SelectionChanged="ComboBox_SelectionChanged"/>
+                    <Button x:Name="btnAddInformation" Padding="0" Margin="10,10" Content="Данные" Width="55" Click="btnAddInformation_Click"/>
+                </WrapPanel>
+            </Grid>
+            <Grid>
+                <WrapPanel>
+                    <Label Margin="0,10" Padding="10,0,0,0" Width="110" Content="Имя:"></Label>
+                    <TextBox Text="{Binding Name}" x:Name="txtName" Padding="0" Width="210" Height="22"/>
+                </WrapPanel>
+            </Grid>
+            <Grid>
+                <WrapPanel>
+                    <Label Margin="0,10" Padding="10,0,0,0" Width="110" Content="Фамилия:"></Label>
+                    <TextBox Text="{Binding Surname}" x:Name="txtSurname" Margin="0,10" Padding="0" Width="210"></TextBox>
+                </WrapPanel>
+            </Grid>
+            <Grid>
+                <WrapPanel>
+                    <Label Margin="0,10" Padding="10,0,0,0" Width="110" Content="Отчество:"></Label>
+                    <TextBox Text="{Binding Middlename}" x:Name="txtMiddleName" Margin="0,10" Padding="0" Width="210"></TextBox>
+                </WrapPanel>
+            </Grid>
+            <Grid>
+                <WrapPanel>
+                    <Label Padding="10,0" Margin="0,10" Width="110" Content="Паспорт(серия):"></Label>
+                    <TextBox x:Name="txtSeria" Height="20" Text="{Binding Path=PassportSeria}" Margin="0,10"  Width="45"/>
+                    <Label Padding="10,0" Margin="0,10"  Width="110" Content="Паспорт(номер):"></Label>
+                    <TextBox x:Name="txtNumber" Height="20" Text="{Binding Path=PassportNumber}" Width="55" Margin="0,10" />
+                </WrapPanel>
+            </Grid>
+            <Grid/>
+            <Grid>
+                <WrapPanel HorizontalAlignment="Center">
+                    <Button x:Name="btnAdd" Margin="10,0,5,0" Height="30" Content="OK" Width="100" Click="btnAdd_Click"></Button>
+                    <Button x:Name="btnCancel" Margin="5,0,10,0" Height="30" Content="Отмена" Width="100" Click="btnCancel_Click"></Button>
+                </WrapPanel>
+            </Grid>
+            <Grid/>
+        </StackPanel>
+    </Grid>
+</Window>

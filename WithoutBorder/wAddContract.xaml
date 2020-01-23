@@ -1,0 +1,104 @@
+﻿<Window x:Class="WithoutBorder.wAddContract"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WithoutBorder"
+        mc:Ignorable="d"
+        Title="Добавить договор" Height="384" Width="396" Loaded="Window_Loaded">
+    <Grid>
+        <StackPanel>
+            <Grid>
+                <WrapPanel>
+                    <RadioButton x:Name="rb1" Tag ="1" Margin="5" Content="Покупка телефона" Checked="RadioButton_Checked"></RadioButton>
+                    <RadioButton x:Name="rb2" Tag ="2" Margin="5" Content="Подключение тарифа" Checked="RadioButton_Checked"></RadioButton>
+                    <RadioButton x:Name="rb3" Tag ="3" Margin="5" Content="Всё вместе" Checked="RadioButton_Checked"></RadioButton>
+                </WrapPanel>
+            </Grid>
+            <Grid>
+                <WrapPanel>
+                    <Label Margin="0,10" Padding="10,0,0,0" Width="110" Content="Пользователь:"></Label>
+                    <ComboBox x:Name="cmbUser" Margin="0,10" Padding="0" Width="260"
+                              ItemsSource="{Binding Path=TUsers}"
+                              DisplayMemberPath="GetFIO"
+                              SelectedValuePath="Id"
+                              SelectedValue="{Binding Path=Id}"></ComboBox>
+                </WrapPanel>
+            </Grid>
+            <Grid>
+                <WrapPanel>
+                    <Label Content="Устройство:" Margin="0,10" Padding="10,0,0,0" Width="110" ></Label>
+                    <ComboBox x:Name="cmbDevice" Margin="0,10"  Padding="0" Width="224"
+                              ItemsSource="{Binding Path=TDevice}"
+                              DisplayMemberPath="Name"
+                              SelectedValuePath="Id"
+                              SelectedValue="{Binding Path=IdDevice}"
+                              >
+                       
+                    </ComboBox>
+                    <Button Height="16" Padding="0" Margin="0,10" Content="@"  x:Name="btn" Click="btn_Click" Background="{x:Null}" BorderBrush="{x:Null}"></Button>
+                    <Popup x:Name="popup1" StaysOpen="False" Placement="Mouse"
+                            AllowsTransparency="True"  >
+                        <StackPanel Background="Gray">
+                            <TextBlock TextWrapping="Wrap" Text="{Binding ElementName=cmbDevice , Path=SelectedItem.Name}" Opacity="0.8" >
+                            </TextBlock>
+                            <Label Content="{Binding ElementName=cmbDevice , Path=SelectedItem.Price}"></Label>
+                        </StackPanel>
+                    </Popup>
+                </WrapPanel>
+            </Grid>
+            <Grid>
+                <WrapPanel>
+                    <Label Margin="0,10" Padding="10,0,0,0" Width="110" Content="Тариф:"></Label>
+                    <ComboBox x:Name="cmbTarif" Margin="0,10" Padding="0" Width="260"
+                              ItemsSource="{Binding Path=TTarif}"
+                              DisplayMemberPath="Name"
+                              SelectedValuePath="Id"
+                              SelectedValue="{Binding Path=IdTarif}"
+                              ></ComboBox>
+                </WrapPanel>
+            </Grid>
+            <Grid>
+                <WrapPanel>
+                    <Label Margin="0,10" Padding="10,0,0,0" Width="110" Content="Бонус:"></Label>
+                    <ComboBox x:Name="cmbBonus" Margin="0,10" Padding="0" Width="260"
+                              ItemsSource="{Binding Path=TBonus}"
+                              DisplayMemberPath="Name"
+                              SelectedValuePath="Id"
+                              SelectedValue="{Binding Path=IdBonus}"
+                              ></ComboBox>
+                </WrapPanel>
+            </Grid>
+            <Grid>
+                <WrapPanel>
+                    <Label Margin="0,10" Padding="10,0,0,0" Width="110" Content="Оператор:"></Label>
+                    <ComboBox x:Name="cmbOperator" Margin="0,10" Padding="0" Width="260"
+                              ItemsSource="{Binding Path=TUsers}"
+                              DisplayMemberPath="GetFIO"
+                              SelectedValuePath="Id"
+                              SelectedValue="{Binding Path=Id}"></ComboBox>
+                </WrapPanel>
+            </Grid>
+            <Grid>
+                <WrapPanel>
+                    <Label Margin="0,10" Padding="10,0,0,0" Width="110" Content="Даты:"></Label>
+                    <DatePicker x:Name="dtp" SelectedDate="{Binding Path=ConlusionDate}" Margin="0,10" Padding="0" Width="260"></DatePicker>
+                </WrapPanel>
+            </Grid>
+            <Grid>
+                <WrapPanel>
+                    <Label Margin="0,10" Padding="10,0,0,0" Width="110" Content="Цена:"></Label>
+                    <TextBox x:Name="txtPrice" Text="{Binding Path=Price}" Margin="0,10" Padding="0" Width="260"></TextBox>
+                </WrapPanel>
+            </Grid>
+            
+            <Grid>
+                <WrapPanel HorizontalAlignment="Center">
+                    <Button x:Name="btnAdd" Margin="10,0,5,0" Height="30" Content="OK" Width="100" Click="btnAdd_Click"></Button>
+                    <Button x:Name="btnCancel" Margin="5,0,10,0" Height="30" Content="Отмена" Width="100" Click="btnCancel_Click"></Button>
+                </WrapPanel>
+            </Grid>
+            <Grid/>
+        </StackPanel>
+    </Grid>
+</Window>

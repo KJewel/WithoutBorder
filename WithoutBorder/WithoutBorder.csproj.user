@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="wAddContract.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="wAddInfoWorker.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="wAddUser.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="wBonus.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="wContract.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="wLogin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="wManufacture.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="wTarif.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="wTypeDevice.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="wUsers.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="wAddContract.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="wAddInfoWorker.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="wAddUser.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="wBonus.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="wContract.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="wLogin.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="wManufacture.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="wTarif.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="wTypeDevice.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="wUsers.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

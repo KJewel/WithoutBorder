@@ -246,3 +246,5 @@ C:\Users\Main\Source\Repos\WithoutBorder\WithoutBorder\obj\Debug\netcoreapp3.0\W
 C:\Users\Main\Source\Repos\WithoutBorder\WithoutBorder\obj\Debug\netcoreapp3.0\WithoutBorder.csproj.CopyComplete
 C:\Users\Main\Source\Repos\WithoutBorder\WithoutBorder\obj\Debug\netcoreapp3.0\WithoutBorder.dll
 C:\Users\Main\Source\Repos\WithoutBorder\WithoutBorder\obj\Debug\netcoreapp3.0\WithoutBorder.pdb
+C:\Users\Main\Source\Repos\WithoutBorder\WithoutBorder\obj\Debug\netcoreapp3.0\wAddUpdateBonus.g.cs
+C:\Users\Main\Source\Repos\WithoutBorder\WithoutBorder\obj\Debug\netcoreapp3.0\wAddUpdateBonus.baml

@@ -26,25 +26,11 @@ namespace WithoutBorder
         {
             if (ckbFilter.IsChecked == false) 
             {
-                dgdBonus.ItemsSource = null;
-                dgdBonus.ItemsSource = context.TBonus.Local.ToBindingList();
-                dgdBonus.CanUserAddRows = true;
-                dgdBonus.CanUserDeleteRows = true;
+                dgdBonus.ItemsSource = context.TBonus.ToList();
                 return;
             }
 
-            var item = context.TBonus.Local.Where(b => b.Name == txtName.Text).ToList();
-            dgdBonus.CanUserAddRows = false;
-            dgdBonus.CanUserDeleteRows = true;
-            dgdBonus.ItemsSource = item;
-        }
-
-        void Save()
-        {
-            MessageBoxResult result = MessageBox.Show("Вы точно хотите сохранить данные ? ", "Сохранить", MessageBoxButton.OKCancel, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Cancel) return;
-
-            context.SaveChanges();
+            dgdBonus.ItemsSource = context.TBonus.Where(b => b.Name == txtNameFilter.Text).ToList();
         }
 
         private void Load()
@@ -54,18 +40,42 @@ namespace WithoutBorder
 
             dgdBonus.ItemsSource = context.TBonus.Local.ToBindingList();
         }
-        void Add()
+        private void Add()
         {
-            TBonus typeDevice = new TBonus() { Name = txtName.Text, Description = txtDescription.Text };
-            context.TBonus.Add(typeDevice);
+            wAddUpdateBonus add = new wAddUpdateBonus(context, true);
+            if(add.ShowDialog() == true)
+            {
+                MessageBox.Show("Объект добавлен");
+            }
         }
-        void Delete()
+        private void Update()
         {
-            MessageBoxResult result = MessageBox.Show("Вы точно хотите удалить ?", "Удалить ? ", MessageBoxButton.OKCancel, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Cancel) return;
-
             var item = (TBonus)dgdBonus.SelectedItem as TBonus;
-            context.Remove(item);
+
+            wAddUpdateBonus update = new wAddUpdateBonus(context, false);
+            update.DataContext = item;
+            if(update.ShowDialog() == true)
+            {
+                MessageBox.Show("Объект изменён");
+            }
+        }
+        private void Delete()
+        {
+            try
+            {
+                MessageBoxResult result = MessageBox.Show("Вы точно хотите удалить ?", "Удалить ? ", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Cancel) return;
+
+                var item = (TBonus)dgdBonus.SelectedItem as TBonus;
+                context.Remove(item);
+                context.SaveChanges();
+                MessageBox.Show("Объект удалён");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Load();
+            }
         }
 
         public wBonus()
@@ -73,53 +83,36 @@ namespace WithoutBorder
             InitializeComponent();
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
-        {
-            Save();
-        }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Load();
         }
 
-        private void btnReload_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBoxResult result = MessageBox.Show("Вы точно хотите обновить данные ? ", "Обновить", MessageBoxButton.OKCancel, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Cancel) return;
-
-            Load();
-        }
-
+        #region//Filter
         private void txtName_TextChanged(object sender, TextChangedEventArgs e)
         {
             Filter();
         }
-
         private void ckbFilter_Checked(object sender, RoutedEventArgs e)
         {
             Filter();
         }
-
         private void ckbFilter_Unchecked(object sender, RoutedEventArgs e)
         {
             Filter();
         }
-
+        #endregion
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             Add();
         }
-
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             Delete();
         }
-
-        private void dgdBonus_Error(object sender, ValidationErrorEventArgs e)
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            var item = (TextBox)sender;
-            item.Text = "0";
+            Update();
         }
     }
 }

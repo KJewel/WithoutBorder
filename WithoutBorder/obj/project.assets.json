@@ -4987,11 +4987,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Main\\Desktop\\WithoutBorder\\WithoutBorder\\WithoutBorder.csproj",
+      "projectUniqueName": "C:\\Users\\Main\\Source\\Repos\\WithoutBorder\\WithoutBorder\\WithoutBorder.csproj",
       "projectName": "WithoutBorder",
-      "projectPath": "C:\\Users\\Main\\Desktop\\WithoutBorder\\WithoutBorder\\WithoutBorder.csproj",
+      "projectPath": "C:\\Users\\Main\\Source\\Repos\\WithoutBorder\\WithoutBorder\\WithoutBorder.csproj",
       "packagesPath": "C:\\Users\\Main\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Main\\Desktop\\WithoutBorder\\WithoutBorder\\obj\\",
+      "outputPath": "C:\\Users\\Main\\Source\\Repos\\WithoutBorder\\WithoutBorder\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",

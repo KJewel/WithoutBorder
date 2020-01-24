@@ -24,23 +24,32 @@ namespace WithoutBorder
         {
             if (ckbFilter.IsChecked == false)
             {
-                dgdManufacture.ItemsSource = null;
-                dgdManufacture.ItemsSource = context.TManufacture.Local.ToBindingList();
-                dgdManufacture.CanUserAddRows = true;
-                dgdManufacture.CanUserDeleteRows = true;
+                dgdManufacture.ItemsSource = context.TManufacture.ToList();
                 return;
             }
 
-            var item = context.TManufacture.Local.Where(b => b.Name == txtNameFilter.Text).ToList();
-            dgdManufacture.CanUserAddRows = false;
-            dgdManufacture.CanUserDeleteRows = true;
-            dgdManufacture.ItemsSource = item;
+            dgdManufacture.ItemsSource = context.TManufacture.Where(b => b.Name == txtNameFilter.Text).ToList();
         }
 
         void Add()
         {
-            TManufacture manufacture = new TManufacture() { Name = txtName.Text, Description = txtDescription.Text };
-            context.TManufacture.Add(manufacture);
+            wAddUpdateManufacture add = new wAddUpdateManufacture(context,true);
+            if(add.ShowDialog() == true)
+            {
+                MessageBox.Show("Объект добавлен");
+            }        
+        }
+
+        private void Update()
+        {
+            var item = (TManufacture)dgdManufacture.SelectedItem as TManufacture;
+
+            wAddUpdateManufacture update = new wAddUpdateManufacture(context, false);
+            update.DataContext = item;
+            if (update.ShowDialog() == true)
+            {
+                MessageBox.Show("Объект изменён");
+            }
         }
 
         void Delete()
@@ -50,14 +59,8 @@ namespace WithoutBorder
 
             var item = (TManufacture)dgdManufacture.SelectedItem as TManufacture;
             context.Remove(item);
-        }
-
-        void Save()
-        {
-            MessageBoxResult result = MessageBox.Show("Вы точно хотите сохранить данные ? ", "Сохранить", MessageBoxButton.OKCancel, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Cancel) return;
-
             context.SaveChanges();
+            MessageBox.Show("Объект удалён");
         }
 
         private void Load()
@@ -73,21 +76,8 @@ namespace WithoutBorder
             InitializeComponent();
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
-        {
-            Save();
-        }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Load();
-        }
-
-        private void btnReload_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBoxResult result = MessageBox.Show("Вы точно хотите обновить данные ? ", "Обновить", MessageBoxButton.OKCancel, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Cancel) return;
-
             Load();
         }
 
@@ -114,6 +104,11 @@ namespace WithoutBorder
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             Delete();
+        }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            Update();
         }
     }
 }

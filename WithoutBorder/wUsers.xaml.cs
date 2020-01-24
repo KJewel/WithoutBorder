@@ -21,7 +21,8 @@ namespace WithoutBorder
     public partial class wUsers : Window
     {
         dbWithoutBorderContext context;
-        ObservableCollection<TUsers> ocUsers;
+
+        TUsers worker = new TUsers();
 
         public wUsers()
         {
@@ -37,94 +38,56 @@ namespace WithoutBorder
 
         private void Update()
         {
-            var item = (TUsers)dgdUsers.SelectedItem as TUsers;
-
-            if (item == null)
-            {
-                MessageBox.Show("Сперва выберите элемент из списка");
-                return;
-            }
-
-            int index = ocUsers.IndexOf(item);
-
-            wAddUser update = new wAddUser(ref context, ref ocUsers, index);
-            update.ShowDialog();
-
-            Filter();
+            
         }
+
         private void Add()
         {
-            wAddUser add = new wAddUser(ref context, ref ocUsers);
-            add.ShowDialog();
-
-            Filter();
+           
         }
 
         private void Delete()
         {
-            MessageBoxResult result = MessageBox.Show("Вы точно хотите удалить данные ? ", "Удалить", MessageBoxButton.OKCancel, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Cancel) return;
 
-            var item = (TUsers)dgdUsers.SelectedItem as TUsers;
-
-            if (item == null)
-            {
-                MessageBox.Show("Сперва выберите элемент из списка");
-                return;
-            }
-
-            ocUsers.Remove(item);
-            context.Remove(item);
-            Filter();
         }
-        void Save()
-        {
-            MessageBoxResult result = MessageBox.Show("Вы точно хотите сохранить данные ? ", "Сохранить", MessageBoxButton.OKCancel, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Cancel) return;
 
-            context.SaveChanges();
-        }
         private void Filter()
         {
-            if (ckbRole.IsChecked == true)
-            {
-                var role = (TRole)cmbRole.SelectedItem as TRole;
-
-                if (role == null) return;
-
-                var item = from t in ocUsers
-                           where t.IdRole == role.Id
-                           select t;
-
-                btnFilterClear.Visibility = Visibility.Visible;
-                dgdUsers.ItemsSource = item;
-            }
-            else
-            {
-                btnFilterClear.Visibility = Visibility.Hidden;
-                dgdUsers.ItemsSource = null;
-                dgdUsers.ItemsSource = ocUsers;
-            }
+            
         }
+
         private void Load()
         {
             context = new dbWithoutBorderContext();
-            ocUsers = new ObservableCollection<TUsers>();
 
-            var items = context?.TUsers.Include(u => u.IdRoleNavigation).Include(u => u.TSpec).ToList();
-
-            var itemsRole = context.TRole.ToList();
-            cmbRole.ItemsSource = itemsRole;
-
-            if (items != null)
+            switch (worker.IdRole)
             {
-                foreach (var item in items)
-                {
-                    ocUsers.Add(item);
-                }
-            }
+                //admin
+                case 1:
+                    {
 
-            dgdUsers.ItemsSource = ocUsers;
+                        var itemsRole = context.TRole.Where(r => r.Id !=1).ToList();
+                        cmbRole.ItemsSource = itemsRole;
+                        
+                        dgdUsers.ItemsSource = context?.TUsers.Include(u => u.IdRoleNavigation).Include(u => u.TSpec).Where(w => w.IdRole != 1).ToList();
+
+                        break;
+                    }
+                //manager
+                case 2:
+                    {
+                        cmbRole.Visibility = Visibility.Hidden;
+                        ckbRole.Visibility = Visibility.Hidden;
+
+                        lRole.Visibility = Visibility.Hidden;
+
+                        dgdUsers.ItemsSource = context?.TUsers.Include(u => u.IdRoleNavigation).Include(u => u.TSpec).Where(w => w.IdRole != 2).Where(w=>w.IdRole !=1).ToList();
+                        break;
+                    }
+            }
+            
+
+
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -140,11 +103,6 @@ namespace WithoutBorder
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             Update();
-        }
-
-        private void btnSave_Click(object sender, RoutedEventArgs e)
-        {
-            Save();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -172,18 +130,5 @@ namespace WithoutBorder
             Filter();
         }
 
-
-        private void dgdUsers_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Delete)
-            {
-                Delete();
-            }
-        }
-
-        private void btnInfoWorker_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
     }
 }

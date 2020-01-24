@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Main\Source\Repos\WithoutBorder\WithoutBorder\obj\Release\netcoreapp3.0\
+C:\Users\jewel\source\repos\WithoutBorder\WithoutBorder\obj\Release\netcoreapp3.0\
 WithoutBorder
 none
 false
 TRACE;RELEASE;NETCOREAPP;NETCOREAPP3_0
-C:\Users\Main\Source\Repos\WithoutBorder\WithoutBorder\App.xaml
-15-238415800
+C:\Users\jewel\source\repos\WithoutBorder\WithoutBorder\App.xaml
+16-194073653
 
-27-400376053
-210-90751013
-MainWindow.xaml;wAddContract.xaml;wAddInfoWorker.xaml;wAddUpdateBonus.xaml;wAddUpdateManufacture.xaml;wAddUpdateTarif.xaml;wAddUpdateTypeDevice.xaml;wAddUser.xaml;wBonus.xaml;wContract.xaml;wLogin.xaml;wManufacture.xaml;wTarif.xaml;wTypeDevice.xaml;wUsers.xaml;
+28-1657137933
+210-2025303545
+MainWindow.xaml;wAddContract.xaml;wAddInfoWorker.xaml;wAddUpdateBonus.xaml;wAddUpdateManufacture.xaml;wAddUpdateTarif.xaml;wAddUpdateTypeDevice.xaml;wAddUser.xaml;wBonus.xaml;wContract.xaml;wLogin.xaml;wLogList.xaml;wManufacture.xaml;wTarif.xaml;wTypeDevice.xaml;wUsers.xaml;
 
 True
 

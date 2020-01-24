@@ -10,7 +10,7 @@
         <DockPanel>
             <Grid  DockPanel.Dock="Top" Height="26">
                 <WrapPanel Margin="1">
-                    <Label Content="Роль:"></Label>
+                    <Label x:Name="lRole" Content="Роль:"></Label>
                     <ComboBox Width="100" Height="20" x:Name="cmbRole" 
                               ItemsSource="{Binding Path=TRole}"
                               DisplayMemberPath="Title"
@@ -30,7 +30,6 @@
                     <Button Content="Добавить" Click="btnAdd_Click" Width="100" Margin="0,0,10,0" Height="26"></Button>
                     <Button Content="Удалить" Click="btnDelete_Click" Width="100" Margin="0,0,10,0" Height="26"></Button>
                     <Button Content="Изменить" Click="btnUpdate_Click" Width="100" Margin="0,0,10,0" Height="26"></Button>
-                    <Button Content="Сохранить" Click="btnSave_Click" Width="100" Margin="0,0,10,0" Height="26"></Button>
                 </WrapPanel>
             </Grid>
             <Grid>

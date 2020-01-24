@@ -5,8 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WithoutBorder"
         mc:Ignorable="d"
-        Title="wLogin" Height="450" Width="800">
+        Title="Авторизация" Height="147" Width="282">
     <Grid>
-        
+        <DockPanel>
+            <Grid Height="10" DockPanel.Dock="Top"></Grid>
+            <Grid Height="40" DockPanel.Dock="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition >
+                    </ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="btnOK" Content="Войти" HorizontalAlignment="Right" Margin="5,0" Height="26"  Width="100" Click="btnOK_Click" ></Button>
+                <Button x:Name="btnCancel" Content="Отмена" Height="26" HorizontalAlignment="Left" Margin="5,0" Grid.Column="1"  Width="100" Click="btnCancel_Click"></Button>
+            </Grid>
+            <Grid >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Padding="10,10,0,0" Content="Логин:" Grid.Row="0" Grid.Column="0"></Label>
+                    <TextBox  x:Name="txtLogin" Margin="0,0,10,0" VerticalAlignment="Bottom" Height="20" Grid.Row="0" Grid.Column="1"></TextBox>
+                    <Label Padding="10,10,0,0" Content="Пароль:" Grid.Row="1" Grid.Column="0"></Label>
+                    <TextBox x:Name="txtPassword" Margin="0,0,10,0" VerticalAlignment="Bottom" Height="20" Grid.Row="1" Grid.Column="1"></TextBox>
+                </Grid>
+            </Grid>
+        </DockPanel>
     </Grid>
 </Window>

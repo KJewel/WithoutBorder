@@ -19,6 +19,12 @@
     <Compile Update="wAddUpdateManufacture.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="wAddUpdateTarif.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="wAddUpdateTypeDevice.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="wAddUser.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -58,6 +64,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="wAddUpdateManufacture.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="wAddUpdateTarif.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="wAddUpdateTypeDevice.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="wAddUser.xaml">

@@ -248,3 +248,7 @@ C:\Users\Main\Source\Repos\WithoutBorder\WithoutBorder\obj\Debug\netcoreapp3.0\W
 C:\Users\Main\Source\Repos\WithoutBorder\WithoutBorder\obj\Debug\netcoreapp3.0\WithoutBorder.pdb
 C:\Users\Main\Source\Repos\WithoutBorder\WithoutBorder\obj\Debug\netcoreapp3.0\wAddUpdateBonus.g.cs
 C:\Users\Main\Source\Repos\WithoutBorder\WithoutBorder\obj\Debug\netcoreapp3.0\wAddUpdateBonus.baml
+C:\Users\Main\Source\Repos\WithoutBorder\WithoutBorder\obj\Debug\netcoreapp3.0\wAddUpdateTarif.g.cs
+C:\Users\Main\Source\Repos\WithoutBorder\WithoutBorder\obj\Debug\netcoreapp3.0\wAddUpdateTarif.baml
+C:\Users\Main\Source\Repos\WithoutBorder\WithoutBorder\obj\Debug\netcoreapp3.0\wAddUpdateTypeDevice.g.cs
+C:\Users\Main\Source\Repos\WithoutBorder\WithoutBorder\obj\Debug\netcoreapp3.0\wAddUpdateTypeDevice.baml

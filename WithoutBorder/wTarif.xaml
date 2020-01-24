@@ -11,37 +11,24 @@
             <Grid  DockPanel.Dock="Top" Height="26">
                 <WrapPanel>
                     <Label Content="Наименование:"></Label>
-                    <TextBox x:Name="txtNameFilter" Margin="0,5" Width="200" TextChanged="txtName_TextChanged"></TextBox>
+                    <TextBox x:Name="txtNameFilter" Margin="0,5" Width="100" TextChanged="txtName_TextChanged"></TextBox>
                     <CheckBox Checked="ckbFilter_Checked" Unchecked="ckbFilter_Unchecked" Margin="0,5,0,0" x:Name="ckbFilter"></CheckBox>
+
+                    <Label Content="Цена:"></Label>
+                    <TextBox x:Name="txtPriceFilter" Margin="0,5" Width="100" TextChanged="txtName_TextChanged"></TextBox>
+                    <CheckBox Checked="ckbFilter_Checked" Unchecked="ckbFilter_Unchecked" Margin="0,5,0,0" x:Name="ckbPrice"></CheckBox>
                 </WrapPanel>
             </Grid>
             <Grid DockPanel.Dock="Top" Height="3" Background="Black">
-            </Grid>
-           
-            <Grid DockPanel.Dock="Top" Height="200" >
-                <StackPanel>
-                    <WrapPanel Margin="0,10,0,0">
-                        <Label Margin="0,5,0,0" Content="Наименование:"></Label>
-                        <TextBox x:Name="txtName" Text="{Binding ElementName=dgdTarif, Path=SelectedItem.Name}" Height="26" Width="300" Margin="0,5"></TextBox>
-                    </WrapPanel>
-                    <WrapPanel>
-                        <Label Margin="0,5,55,0" Content="Цена:"></Label>
-                        <TextBox x:Name="txtPrice" Text="{Binding ElementName=dgdTarif, Path=SelectedItem.Price}" Height="26" Width="300" Margin="0,5"></TextBox>
-                    </WrapPanel>
-                    <WrapPanel>
-                        <Label Margin="0,5,28,0" VerticalAlignment="Top" Height="26" Content="Описание:"></Label>
-                        <TextBox TextWrapping="Wrap" x:Name="txtDescription" Text="{Binding ElementName=dgdTarif, Path=SelectedItem.Description}" Height="100" Width="300" Margin="0,5"></TextBox>
-                    </WrapPanel>
-                </StackPanel>
             </Grid>
             <Grid DockPanel.Dock="Top" Height="3" Background="Black">
             </Grid>
             <Grid Height="50" DockPanel.Dock="Bottom">
                 <WrapPanel Orientation="Vertical" Margin="10">
-                    <Button x:Name="btnAdd" Content="Добавить" Width="100" Margin="0,0,10,0" Height="26" Click="btnAdd_Click"></Button>
-                    <Button x:Name="btnDelete" Content="Удалить"  Width="100" Height="26"  Margin="0,0,10,0" Click="btnDelete_Click"/>
-                    <Button x:Name="btnSave" Content="Сохранить" Click="btnSave_Click" Width="100" Height="26"  Margin="0,0,10,0"/>
-                    <Button x:Name="btnReload" Content="Обновить" Click="btnReload_Click" Width="100" Height="26"  Margin="0,0,10,0"/></WrapPanel>
+                    <Button x:Name="btnAdd"     Content="Добавить" Width="100" Margin="0,0,10,0" Height="26" Click="btnAdd_Click"></Button>
+                    <Button x:Name="btnUpdate"  Content="Изменить"  Width="100" Height="26"  Margin="0,0,10,0" Click="btnUpdate_Click"/>
+                    <Button x:Name="btnDelete"  Content="Удалить"  Width="100" Height="26"  Margin="0,0,10,0" Click="btnDelete_Click"/>
+                </WrapPanel>
             </Grid>
             <Grid>
                 <DataGrid RowHeight="30" x:Name="dgdTarif" AutoGenerateColumns="False" SelectionMode="Single" IsReadOnly="True">

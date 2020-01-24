@@ -17,26 +17,13 @@
             </Grid>
             <Grid DockPanel.Dock="Top" Height="3" Background="Black">
             </Grid>
-            <Grid DockPanel.Dock="Top" Height="150" >
-                <StackPanel>
-                    <WrapPanel>
-                        <Label Margin="0,5,0,0" Content="Наименование:"></Label>
-                        <TextBox x:Name="txtName" Text="{Binding ElementName=dgdTypeDevice, Path=SelectedItem.Name}" Height="26" Width="300" Margin="0,5"></TextBox>
-                    </WrapPanel>
-                    <WrapPanel>
-                        <Label Margin="0,5,28,0" VerticalAlignment="Top" Height="26" Content="Описание:"></Label>
-                        <TextBox TextWrapping="Wrap" x:Name="txtDescription" Text="{Binding ElementName=dgdTypeDevice, Path=SelectedItem.Description}" Height="100" Width="300" Margin="0,5"></TextBox>
-                    </WrapPanel>
-                </StackPanel>
-            </Grid>
             <Grid DockPanel.Dock="Top" Height="3" Background="Black">
             </Grid>
             <Grid Height="50" DockPanel.Dock="Bottom">
                 <WrapPanel Orientation="Vertical" Margin="10">
                     <Button x:Name="btnAdd" Content="Добавить" Width="100" Margin="0,0,10,0" Height="26" Click="btnAdd_Click"></Button>
+                    <Button x:Name="btnUpdate" Content="Изменить"  Width="100" Height="26"  Margin="0,0,10,0" Click="btnUpdate_Click"/>
                     <Button x:Name="btnDelete" Content="Удалить"  Width="100" Height="26"  Margin="0,0,10,0" Click="btnDelete_Click"/>
-                    <Button x:Name="btnSave" Content="Сохранить" Click="btnSave_Click" Width="100" Height="26"  Margin="0,0,10,0"/>
-                    <Button x:Name="btnReload" Content="Обновить" Click="btnReload_Click" Width="100" Height="26"  Margin="0,0,10,0"/>
                 </WrapPanel>
             </Grid>
             <Grid>

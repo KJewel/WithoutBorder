@@ -23,42 +23,73 @@ namespace WithoutBorder
 
         private void Filter()
         {
-            if (ckbFilter.IsChecked == false)
+            if (ckbFilter.IsChecked == true)
             {
-                dgdTarif.ItemsSource = null;
-                dgdTarif.ItemsSource = context.TTarif.Local.ToBindingList();
-                dgdTarif.CanUserAddRows = true;
-                dgdTarif.CanUserDeleteRows = true;
-                return;
+                if(ckbPrice.IsChecked == true)
+                {
+                    if (txtPriceFilter.Text == "")
+                    {
+                        txtPriceFilter.Text = "0";
+                    }
+
+                    dgdTarif.ItemsSource = context.TTarif.Local.Where(n => n.Name == txtNameFilter.Text).Where(p => p.Price == float.Parse(txtPriceFilter.Text)).ToList();
+                }
+                else
+                {
+                    dgdTarif.ItemsSource = context.TTarif.Local.Where(n => n.Name == txtNameFilter.Text).ToList();
+                }
             }
+            else if(ckbPrice.IsChecked == true)
+            {   
+                if(txtPriceFilter.Text == "")
+                {
+                    txtPriceFilter.Text = "0";
+                }
 
-            var item = context.TTarif.Local.Where(b => b.Name == txtName.Text).ToList();
-            dgdTarif.CanUserAddRows = false;
-            dgdTarif.CanUserDeleteRows = true;
-            dgdTarif.ItemsSource = item;
+                dgdTarif.ItemsSource = context.TTarif.Local.Where(p => p.Price == float.Parse(txtPriceFilter.Text)).ToList();
+            }
+            else
+            {
+                dgdTarif.ItemsSource = context.TTarif.Local.ToList();
+            }
         }
-
-        void Save()
+        private void Add()
         {
-            MessageBoxResult result = MessageBox.Show("Вы точно хотите сохранить данные ? ", "Сохранить", MessageBoxButton.OKCancel, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Cancel) return;
-
-            context.SaveChanges();
+            wAddUpdateTarif add = new wAddUpdateTarif(context, true);
+            if (add.ShowDialog() == true)
+            {
+                MessageBox.Show("Объект добавлен");
+            }
         }
-
-        void Add()
+        private void Update()
         {
-            TTarif typeDevice = new TTarif() { Name = txtName.Text, Description = txtDescription.Text };
-            context.TTarif.Add(typeDevice);
-        }
-
-        void Delete()
-        {
-            MessageBoxResult result = MessageBox.Show("Вы точно хотите удалить ?", "Удалить ? ", MessageBoxButton.OKCancel, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Cancel) return;
-
             var item = (TTarif)dgdTarif.SelectedItem as TTarif;
-            context.Remove(item);
+
+            wAddUpdateTarif update = new wAddUpdateTarif(context, false);
+            update.DataContext = item;
+            if (update.ShowDialog() == true)
+            {
+                MessageBox.Show("Объект изменён");
+            }
+        }
+        private void Delete()
+        {
+            try
+            {
+                MessageBoxResult result = MessageBox.Show("Вы точно хотите удалить ?", "Удалить ? ", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Cancel) return;
+
+                var item = (TTarif)dgdTarif.SelectedItem as TTarif;
+                context.Remove(item);
+                context.SaveChanges();
+                Load();
+                MessageBox.Show("Объект удалён");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Load();
+            }
         }
 
         private void Load()
@@ -73,22 +104,8 @@ namespace WithoutBorder
         {
             InitializeComponent();
         }
-
-        private void btnSave_Click(object sender, RoutedEventArgs e)
-        {
-            Save();
-        }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Load();
-        }
-
-        private void btnReload_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBoxResult result = MessageBox.Show("Вы точно хотите обновить данные ? ", "Обновить", MessageBoxButton.OKCancel, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Cancel) return;
-
             Load();
         }
 
@@ -111,10 +128,14 @@ namespace WithoutBorder
         {
             Add();
         }
-
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             Delete();
+        }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            Update();
         }
     }
 }

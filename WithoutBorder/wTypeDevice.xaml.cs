@@ -24,40 +24,11 @@ namespace WithoutBorder
         {
             if (ckbFilter.IsChecked == false)
             {
-                dgdTypeDevice.ItemsSource = null;
                 dgdTypeDevice.ItemsSource = context.TTypeDevice.Local.ToBindingList();
-                dgdTypeDevice.CanUserAddRows = true;
-                dgdTypeDevice.CanUserDeleteRows = true;
                 return;
             }
 
-            var item = context.TTypeDevice.Local.Where(b => b.Name == txtNameFilter.Text).ToList();
-            dgdTypeDevice.CanUserAddRows = false;
-            dgdTypeDevice.CanUserDeleteRows = true;
-            dgdTypeDevice.ItemsSource = item;
-        }
-
-        void Add()
-        {
-            TTypeDevice typeDevice = new TTypeDevice() { Name =txtName.Text, Description = txtDescription.Text };
-            context.TTypeDevice.Add(typeDevice);
-        }
-
-        void Delete()
-        {
-            MessageBoxResult result = MessageBox.Show("Вы точно хотите удалить ?", "Удалить ? ", MessageBoxButton.OKCancel, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Cancel) return;
-
-            var item = (TTypeDevice)dgdTypeDevice.SelectedItem as TTypeDevice;
-            context.Remove(item);
-        }
-
-        void Save()
-        {
-            MessageBoxResult result = MessageBox.Show("Вы точно хотите сохранить данные ? ", "Сохранить", MessageBoxButton.OKCancel, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Cancel) return;
-
-            context.SaveChanges();
+            dgdTypeDevice.ItemsSource = context.TTypeDevice.Local.Where(b => b.Name.ToUpper() == txtNameFilter.Text.ToUpper()).ToList();
         }
 
         private void Load()
@@ -68,14 +39,47 @@ namespace WithoutBorder
             dgdTypeDevice.ItemsSource = context.TTypeDevice.Local.ToBindingList();
         }
 
+        private void Add()
+        {
+            wAddUpdateTypeDevice add = new wAddUpdateTypeDevice(context, true);
+            if (add.ShowDialog() == true)
+            {
+                MessageBox.Show("Объект добавлен");
+            }
+        }
+        private void Update()
+        {
+            var item = (TTypeDevice)dgdTypeDevice.SelectedItem as TTypeDevice;
+
+            wAddUpdateTypeDevice update = new wAddUpdateTypeDevice(context, false);
+            update.DataContext = item;
+            if (update.ShowDialog() == true)
+            {
+                MessageBox.Show("Объект изменён");
+            }
+        }
+        private void Delete()
+        {
+            try
+            {
+                MessageBoxResult result = MessageBox.Show("Вы точно хотите удалить ?", "Удалить ? ", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Cancel) return;
+
+                var item = (TTypeDevice)dgdTypeDevice.SelectedItem as TTypeDevice;
+                context.Remove(item);
+                context.SaveChanges();
+                MessageBox.Show("Объект удалён");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Load();
+            }
+        }
+
         public wTypeDevice()
         {
             InitializeComponent();
-        }
-
-        private void btnSave_Click(object sender, RoutedEventArgs e)
-        {
-            Save();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -83,13 +87,6 @@ namespace WithoutBorder
             Load();
         }
 
-        private void btnReload_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBoxResult result = MessageBox.Show("Вы точно хотите обновить данные ? ", "Обновить", MessageBoxButton.OKCancel, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Cancel) return;
-
-            Load();
-        }
 
         private void txtName_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -114,6 +111,11 @@ namespace WithoutBorder
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             Delete();
+        }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            Update();
         }
     }
 }

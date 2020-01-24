@@ -32,7 +32,7 @@ namespace WithoutBorder
         {
             if (f)
             {
-                TBonus bonus = new TBonus();
+                TBonus bonus = new TBonus() { Name = txtName.Text, Description = txtDescription.Text, PercentBonus =float.Parse(txtPercent.Text) };
                 context.TBonus.Add(bonus);
                 context.SaveChanges();
                 DialogResult = true;

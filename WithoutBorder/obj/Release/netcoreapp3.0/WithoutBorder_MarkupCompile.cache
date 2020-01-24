@@ -10,11 +10,11 @@ none
 false
 TRACE;RELEASE;NETCOREAPP;NETCOREAPP3_0
 C:\Users\Main\Source\Repos\WithoutBorder\WithoutBorder\App.xaml
-131937285833
+15-238415800
 
-25-1250833162
+27-400376053
 210-90751013
-MainWindow.xaml;wAddContract.xaml;wAddInfoWorker.xaml;wAddUpdateBonus.xaml;wAddUpdateManufacture.xaml;wAddUser.xaml;wBonus.xaml;wContract.xaml;wLogin.xaml;wManufacture.xaml;wTarif.xaml;wTypeDevice.xaml;wUsers.xaml;
+MainWindow.xaml;wAddContract.xaml;wAddInfoWorker.xaml;wAddUpdateBonus.xaml;wAddUpdateManufacture.xaml;wAddUpdateTarif.xaml;wAddUpdateTypeDevice.xaml;wAddUser.xaml;wBonus.xaml;wContract.xaml;wLogin.xaml;wManufacture.xaml;wTarif.xaml;wTypeDevice.xaml;wUsers.xaml;
 
 True
 
